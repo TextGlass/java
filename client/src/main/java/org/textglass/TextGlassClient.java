@@ -141,7 +141,7 @@ public class TextGlassClient {
   }
 
   private void loadPatterns(JsonFile patternFile, boolean patch) throws Exception {
-    Main.log("Loading pattern domain: " + patternFile.getDomain() + ", version: " +
+    Util.log("Loading pattern domain: " + patternFile.getDomain() + ", version: " +
         patternFile.getDomainVersion() + (patch ? ", patch" : ""), 1);
 
     //INPUT PARSER
@@ -163,11 +163,11 @@ public class TextGlassClient {
 
           transformers.add(transformer);
 
-          Main.log("Found transformer: " + transformer, 2);
+          Util.log("Found transformer: " + transformer, 2);
         }
       }
 
-      Main.log("Found " + transformers.size() + " transformer(s)", 1);
+      Util.log("Found " + transformers.size() + " transformer(s)", 1);
 
       //TOKEN SEPERATORS
 
@@ -187,10 +187,10 @@ public class TextGlassClient {
 
           tokenSeperators.add(tokenSeperator);
 
-          Main.log("Found tokenSeperator: '" + tokenSeperator + "'", 2);
+          Util.log("Found tokenSeperator: '" + tokenSeperator + "'", 2);
         }
 
-        Main.log("Found " + tokenSeperators.size() + " tokenSeperator(s)", 1);
+        Util.log("Found " + tokenSeperators.size() + " tokenSeperator(s)", 1);
       }
 
       //NGRAM SIZE
@@ -203,7 +203,7 @@ public class TextGlassClient {
           throw new Exception("Invalid value of ngramConcatSize: " + ngramConcatSize);
         }
 
-        Main.log("Found ngramConcatSize: " + ngramConcatSize, 2);
+        Util.log("Found ngramConcatSize: " + ngramConcatSize, 2);
       }
     }
 
@@ -215,7 +215,7 @@ public class TextGlassClient {
       if(!JsonFile.empty(patternSet, "defaultId")) {
         defaultId = patternSet.get("defaultId").asText();
 
-        Main.log("Found defaultId: " + defaultId, 2);
+        Util.log("Found defaultId: " + defaultId, 2);
       }
 
       //PATTERNS
@@ -240,7 +240,7 @@ public class TextGlassClient {
             patterns.put(patternToken, tokenPatterns);
           }
 
-          Main.log(pattern.toStringFull(), 3);
+          Util.log(pattern.toStringFull(), 3);
 
           patternCount++;
         }
@@ -250,7 +250,7 @@ public class TextGlassClient {
         throw new Exception("No patterns found");
       }
 
-      Main.log("Found " + patternCount + " pattern(s), total: " + patterns.size(), 1);
+      Util.log("Found " + patternCount + " pattern(s), total: " + patterns.size(), 1);
     }
 
     //OPTIONAL ATTRIBUTES IN PATTERN FILE
@@ -261,7 +261,7 @@ public class TextGlassClient {
   }
 
   private void loadAttributes(JsonFile attributeFile) throws Exception {
-    Main.log("Loading attributes: " + attributeFile.getDomain() +
+    Util.log("Loading attributes: " + attributeFile.getDomain() +
         ", version: " + attributeFile.getDomainVersion(), 1);
 
     //ATTRIBUTES
@@ -285,7 +285,7 @@ public class TextGlassClient {
 
         Attributes patternAttributes = new Attributes(patternId, attributeNode);
 
-        Main.log(patternAttributes.toString(), 3);
+        Util.log(patternAttributes.toString(), 3);
 
         attributes.put(patternId, patternAttributes);
 
@@ -297,7 +297,7 @@ public class TextGlassClient {
       throw new Exception("No attributes found");
     }
 
-    Main.log("Found " + attributeCount + " attributes(s), total: " + attributes.size(), 1);
+    Util.log("Found " + attributeCount + " attributes(s), total: " + attributes.size(), 1);
   }
 
   public Map<String, String> classify(String input) throws Exception {
@@ -305,7 +305,7 @@ public class TextGlassClient {
       input = "";
     }
 
-    Main.log("Classify: '" + input + "'", 2);
+    Util.log("Classify: '" + input + "'", 2);
 
     //TRANFORM THE INPUT
 
@@ -315,13 +315,13 @@ public class TextGlassClient {
       transformed = transformer.transform(transformed);
     }
 
-    Main.log("Transformed: '" + transformed + "'", 3);
+    Util.log("Transformed: '" + transformed + "'", 3);
 
     //TOKENIZE THE INPUT
 
     List<String> tokens = split(transformed, tokenSeperators);
 
-    Main.log("Tokens: " + tokens, 3);
+    Util.log("Tokens: " + tokens, 3);
 
     //NGRAM THE INPUT
 
@@ -342,7 +342,7 @@ public class TextGlassClient {
       ngramParts.clear();
     }
 
-    Main.log("Ngrams: " + ngramTokenStream, 3);
+    Util.log("Ngrams: " + ngramTokenStream, 3);
 
     //MATCH THE TOKEN STREAM AGAINST THE PATTERNS
 
@@ -362,7 +362,7 @@ public class TextGlassClient {
           }
         }
 
-        Main.log("Hit: " + token + ", candidates: " + matched, 3);
+        Util.log("Hit: " + token + ", candidates: " + matched, 3);
       }
     }
 
@@ -371,7 +371,7 @@ public class TextGlassClient {
     if(winner == null) {
       for(Pattern candidate : candidates) {
         if(candidate.isValid(matchedTokens)) {
-          Main.log("Candidate: " + candidate.toStringRank(matchedTokens), 3);
+          Util.log("Candidate: " + candidate.toStringRank(matchedTokens), 3);
           
           if(winner == null) {
             winner = candidate;
@@ -385,7 +385,7 @@ public class TextGlassClient {
       }
     }
     
-    Main.log("Winner: " + (winner == null ? "null" : winner.toStringFull()), 3);
+    Util.log("Winner: " + (winner == null ? "null" : winner.toStringFull()), 3);
 
     //RETURN THE RESULT
 
@@ -431,7 +431,7 @@ public class TextGlassClient {
         }
       }
 
-      Main.log("Attribute map: " + attributeMap, 3);
+      Util.log("Attribute map: " + attributeMap, 3);
 
       return attributeMap;
     }
@@ -441,7 +441,7 @@ public class TextGlassClient {
 
     custom.put("patternId", patternId);
 
-    Main.log("Attribute map: " + custom, 3);
+    Util.log("Attribute map: " + custom, 3);
 
     return Collections.unmodifiableMap(custom);
   }

@@ -17,7 +17,7 @@
  */
 package org.textglass;
 
-import java.io.File;
+import java.io.InputStream;
 
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -32,12 +32,12 @@ public class JsonFile {
   private final String domain;
   private final String domainVersion;
 
-  public JsonFile(String path) throws Exception {
+  public JsonFile(InputStream input) throws Exception {
 
     //LOAD A JSON FILE AND VALIDATE IT
     
     ObjectMapper mapper = new ObjectMapper();
-    json = mapper.readTree(new File(path));
+    json = mapper.readTree(input);
 
     if(!json.isObject()) {
       throw new Exception("JsonFile is not an object");
