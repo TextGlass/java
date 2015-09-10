@@ -17,6 +17,7 @@
  */
 package org.textglass;
 
+import org.textglass.json.JsonFile;
 import java.util.ArrayList;
 import java.util.List;
 

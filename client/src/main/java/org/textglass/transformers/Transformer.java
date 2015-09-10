@@ -15,16 +15,8 @@
  * under the License.
  *
  */
-package org.textglass;
+package org.textglass.transformers;
 
-public class TransformerUpperCase implements Transformer {
-  @Override
-  public String transform(String input) {
-    return input.toUpperCase();
-  }
-
-  @Override
-  public String toString() {
-    return "TransformerUpperCase";
-  }
+public interface Transformer {
+  public String transform(String input) throws Exception;
 }

@@ -15,34 +15,16 @@
  * under the License.
  *
  */
-package org.textglass;
+package org.textglass.transformers;
 
-import org.codehaus.jackson.JsonNode;
-
-public class TransformerReplaceAll implements Transformer {
-  private final String find;
-  private final String replaceWith;
-
-  public TransformerReplaceAll(JsonNode json) throws Exception {
-    if(JsonFile.empty(json, "find")) {
-      throw new Exception("ReplaceAll find not defined");
-    }
-
-    if(json.get("replaceWith") == null) {
-      throw new Exception("ReplaceAll replaceWith not defined");
-    }
-
-    find = json.get("find").asText();
-    replaceWith = json.get("replaceWith").asText();
-  }
-
+public class TransformerUpperCase implements Transformer {
   @Override
   public String transform(String input) {
-    return input.replace(find, replaceWith);
+    return input.toUpperCase();
   }
 
   @Override
   public String toString() {
-    return "TransformerReplaceAll  find: '" + find + "'  replaceWith: '" + replaceWith + "'";
+    return "TransformerUpperCase";
   }
 }

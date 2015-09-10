@@ -15,7 +15,7 @@
  * under the License.
  *
  */
-package org.textglass;
+package org.textglass.transformers;
 
 public class TransformerLowerCase implements Transformer {
   @Override

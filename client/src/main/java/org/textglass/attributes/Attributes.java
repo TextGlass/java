@@ -15,7 +15,7 @@
  * under the License.
  *
  */
-package org.textglass;
+package org.textglass.attributes;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -23,6 +23,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.codehaus.jackson.JsonNode;
+import org.textglass.json.JsonFile;
 
 public class Attributes {
   private final String patternId;

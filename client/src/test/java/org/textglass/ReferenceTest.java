@@ -17,6 +17,7 @@
  */
 package org.textglass;
 
+import org.textglass.json.JsonFile;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Iterator;

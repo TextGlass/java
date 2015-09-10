@@ -15,8 +15,22 @@
  * under the License.
  *
  */
-package org.textglass;
+package org.textglass.transformers;
 
-public interface Transformer {
-  public String transform(String input) throws Exception;
+public class TransformerIsNumber implements Transformer {
+  @Override
+  public String transform(String input) throws Exception {
+    try {
+      Double.parseDouble(input);
+    } catch(NumberFormatException nfe) {
+      throw new Exception(nfe.toString());
+    }
+    
+    return input;
+  }
+
+  @Override
+  public String toString() {
+    return "TransformerIsNumber";
+  }
 }

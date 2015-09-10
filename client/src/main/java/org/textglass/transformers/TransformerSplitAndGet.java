@@ -15,12 +15,14 @@
  * under the License.
  *
  */
-package org.textglass;
+package org.textglass.transformers;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.JsonNode;
+import org.textglass.json.JsonFile;
+import org.textglass.TextGlassClient;
 
 public class TransformerSplitAndGet implements Transformer {
   private final List<String> delimiter;

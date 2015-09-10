@@ -17,6 +17,16 @@
  */
 package org.textglass;
 
+import org.textglass.json.JsonFile;
+import org.textglass.attributes.Attributes;
+import org.textglass.transformers.Transformer;
+import org.textglass.transformers.TransformerLowerCase;
+import org.textglass.transformers.TransformerSplitAndGet;
+import org.textglass.transformers.TransformerIsNumber;
+import org.textglass.transformers.TransformerReplaceAll;
+import org.textglass.transformers.TransformerSubstring;
+import org.textglass.transformers.TransformerUpperCase;
+import org.textglass.transformers.TransformerReplaceFirst;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -28,7 +38,7 @@ import org.codehaus.jackson.JsonNode;
 
 public class TextGlassClient {
   
-  public final static String VERSION = "1.0.0";
+  public final static String VERSION = "1.0.0-beta";
 
   private String domain;
   private String domainVersion;

@@ -15,9 +15,10 @@
  * under the License.
  *
  */
-package org.textglass;
+package org.textglass.transformers;
 
 import org.codehaus.jackson.JsonNode;
+import org.textglass.json.JsonFile;
 
 public class TransformerReplaceFirst implements Transformer {
   private final String find;

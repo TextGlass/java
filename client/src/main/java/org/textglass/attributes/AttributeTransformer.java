@@ -15,12 +15,15 @@
  * under the License.
  *
  */
-package org.textglass;
+package org.textglass.attributes;
 
+import org.textglass.transformers.Transformer;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.JsonNode;
+import org.textglass.json.JsonFile;
+import org.textglass.TextGlassClient;
 
 public class AttributeTransformer {
   private final String defaultValue;

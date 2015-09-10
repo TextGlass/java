@@ -15,7 +15,7 @@
  * under the License.
  *
  */
-package org.textglass;
+package org.textglass.json;
 
 import java.io.InputStream;
 

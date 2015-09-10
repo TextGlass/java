@@ -15,9 +15,10 @@
  * under the License.
  *
  */
-package org.textglass;
+package org.textglass.transformers;
 
 import org.codehaus.jackson.JsonNode;
+import org.textglass.json.JsonFile;
 
 public class TransformerSubstring implements Transformer {
   private final int start;
